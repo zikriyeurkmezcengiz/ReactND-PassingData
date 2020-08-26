@@ -100,13 +100,30 @@ const movies = {
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">ReactND - Coding Practice</h1>
-        </header>
-        <h2>How Popular is Your Favorite Movie?</h2>
-      </div>
+      {movies.map((movie) => {
+          const favMovieName = movie.name;
+          const favedProfiles = profiles.filter(p=> p.favoriteMovieID === movie.id)
+          favedProfiles.map((fav)=>{
+            const username = users[fav.userID];
+            
+                 return (
+if(!!username) ?
+            {
+            <h2>{favMovieName}</h2>
+            <p>Liked By:</p>
+            <ul>
+              <li>{username}</li>
+            </ul>
+            } : 
+         <h2>{favMovieName}</h2>
+				<p>None of the current users liked this movie</p>
+          );
+            
+          })
+         
+
+     
+        })}
     );
   }
 }
